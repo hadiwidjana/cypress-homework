@@ -8,8 +8,8 @@ describe('User Input Quote Test', () => {
     //stores colors
     var arrayColors=["white","White","Yellow",'Cyan']
 
-    it('verify list of option', () => {
-        cy.visit('https://b899-13-67-75-93.ngrok.io/')
+    it('[TC001] Verify list of option', () => {
+        cy.visit('http://localhost:6061/')
 
         const examplePage = new ExamplePage()
         let i = 0;
@@ -40,32 +40,20 @@ describe('User Input Quote Test', () => {
 
     })
 
-    it('verify table' , () => {
-        // cy.visit('https://b899-13-67-75-93.ngrok.io/')
-        cy.get('#tableView').click()
-        cy.get('#buttonShowTable').trigger('mouseover')
+    it('[TC002] Verify table' , () => {
+
+        const examplePage = new ExamplePage()
+
+        examplePage.getTable();
 
         //verify table header
-        cy.get('thead > tr > :nth-child(1)').contains('Quotes')
-        cy.get('thead > tr > :nth-child(2)').contains('Color')
+        examplePage.verifyTable();
 
         //verify quotes column
-        cy.get('td[name=tableColumnQuote]').then($listColumn1 => {
-            for (let j=0; j <arrayQuotes.length; j++){
-                expect($listColumn1.eq(j)).to.contain(arrayQuotes[j])
-            }
-        })
+        examplePage.verifyQuotesColumn(arrayQuotes);
 
         //verify color column
-        cy.get('td[name=tableColumnColor]').then($listColumn2 => {
-            for (let k=0; k <arrayColors.length; k++){
-                expect($listColumn2.eq(k)).to.contain(arrayColors[k])
-            }
-        })
-
-
-
-       
+        examplePage.verifyColorColumn(arrayColors);
 
     })
 

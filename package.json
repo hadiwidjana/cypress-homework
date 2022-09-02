@@ -1,10 +1,10 @@
 {
-  "name": "cypress-fazztrack-homework",
+  "name": "cypress-page-object-project",
   "version": "1.0.0",
   "description": "cypress training",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run **/test1.cy.js"
   },
   "keywords": [],
   "author": "satria",
